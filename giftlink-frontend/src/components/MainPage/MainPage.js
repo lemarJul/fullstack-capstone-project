@@ -11,19 +11,19 @@ function MainPage() {
         const fetchGifts = async () => {
             try {
 
-                let url = urlConfig.backendUrl
+              let url = `${urlConfig.backendUrl}/api/gifts`
                 const response = await fetch(url)
                 if (!response.ok)
                     throw new Error(`HTTP error; ${response.status}`)
 
-                const data = response.json()
+                const data = await response.json()
                 setGifts(data);
             } catch (err) {
-                console.log('Fetch error: ' + error.message);
+                console.log('Fetch error: ' + err.message);
             }
         }
 
-        fetchGifts
+        fetchGifts()
     }, []);
 
     // Task 2: Navigate to details page
